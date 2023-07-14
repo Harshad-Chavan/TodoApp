@@ -32,7 +32,7 @@ def get_db():
         db.close()
 
 
-db_dependency = Annotated[Session, Depends(get_db)]
+# db_dependency = Annotated[Session, Depends(get_db)]
 
 
 @router.get("/change_password", response_class=HTMLResponse)
@@ -46,7 +46,7 @@ async def change_passowrd_page(request: Request):
 
 @router.post("/change_password", response_class=HTMLResponse)
 async def change_password(
-    request: Request, db: db_dependency, old_password: str = Form(...), new_password: str = Form(...)
+    request: Request, db: Session = Depends(get_db), old_password: str = Form(...), new_password: str = Form(...)
 ):
     context = {"request": request}
     user = await get_current_user(request)

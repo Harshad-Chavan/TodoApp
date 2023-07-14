@@ -55,7 +55,7 @@ def get_db():
         db.close()
 
 
-db_dependency = Annotated[Session, Depends(get_db)]
+# db_dependency = Annotated[Session, Depends(get_db)]
 
 
 def get_password_hash(password):
@@ -126,7 +126,7 @@ async def authentication_page(request: Request):
 
 
 @router.post("/", response_class=HTMLResponse)
-async def login(request: Request, db: db_dependency):
+async def login(request: Request, db: Session = Depends(get_db)):
     try:
         # This basically converts the email id into username which is required format for oauth
         form = LoginForm(request)
@@ -165,7 +165,7 @@ async def registration_page(request: Request):
 @router.post("/register", response_class=HTMLResponse)
 async def registration_user(
     request: Request,
-    db: db_dependency,
+    db: Session = Depends(get_db),
     email: str = Form(...),
     username: str = Form(...),
     firstname: str = Form(...),
