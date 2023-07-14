@@ -6,7 +6,9 @@
         </div>
         <div class="card-body">
 
-            {% if msg %}
+            {% if msg  == 'User successfully Created.Click on Login'%}
+            <div class="alert alert-danger role-success">{{msg}}</div>
+            {% else %}
             <div class="alert alert-danger role-alert">{{msg}}</div>
             {% endif %}
 
@@ -45,7 +47,8 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+                <a type="button" class="btn btn-outline-light" href="/auth">Login</a>
             </form>
         </div>
         <div class="card-footer text-muted">
