@@ -8,6 +8,8 @@
 
             {% if msg %}
             {% if msg  == 'User successfully Created.Click on Login'%}
+            <div class="alert alert-success role-success">{{msg}}</div>
+            {% else %}
             <div class="alert alert-danger role-success">{{msg}}</div>
             {% endif %}
             {% endif %}
