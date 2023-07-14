@@ -5,7 +5,7 @@ from starlette.responses import RedirectResponse, Response
 sys.path.append("..")
 
 from datetime import datetime, timedelta
-from typing import Annotated, Optional
+from typing import Optional
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request, status
 from fastapi.responses import HTMLResponse
