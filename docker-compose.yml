@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  fastapi-app-1:
+    image: fast_api_nginx:latest
+    ports:
+      - "8001:8000"  # Expose container port 8000 to host port 8001
+
+  fastapi-app-2:
+    image: fast_api_nginx:latest
+    ports:
+      - "8002:8000"  # Expose container port 8000 to host port 8002
+
+
+  fastapi-app-3:
+    image: fast_api_nginx:latest
+    ports:
+      - "8003:8000"  # Expose container port 8000 to host port 8003
