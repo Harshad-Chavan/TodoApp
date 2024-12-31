@@ -1,6 +1,7 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
+# Here we create the db configuration
 from database import Base
 
 

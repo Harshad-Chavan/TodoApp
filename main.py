@@ -9,14 +9,15 @@ from routers import auth, todos, users
 
 app = FastAPI()
 
+# Create the database tables if they don't exist
 models.Base.metadata.create_all(bind=engine)
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # To redirect all to /todos
 @app.get("/")
 async def root():
-    return RedirectResponse(url="/todos", status_code=status.HTTP_302_FOUND)
+    return RedirectResponse(url="/auth", status_code=status.HTTP_302_FOUND)
 
 
 app.include_router(auth.router)
