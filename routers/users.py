@@ -41,7 +41,7 @@ async def change_passowrd_page(request: Request):
     if user is None:
         return RedirectResponse(url="/auth", status_code=status.HTTP_302_FOUND)
     context = {"request": request}
-    return templates.TemplateResponse("change_password.html", context)
+    return templates.TemplateResponse(request, "change_password.html", context)
 
 
 @router.post("/change_password", response_class=HTMLResponse)
@@ -63,9 +63,8 @@ async def change_password(
         db.add(user_data)
         db.commit()
         context['msg'] = "Password Changed successfully.Please login again"
-        return templates.TemplateResponse("login.html", context)
-        pass
+        return templates.TemplateResponse(request, "login.html", context)
     else:
         context['msg'] = "Old password is incorrect"
-        return templates.TemplateResponse("change_password.html", context)
+        return templates.TemplateResponse(request, "change_password.html", context)
 

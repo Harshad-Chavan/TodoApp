@@ -122,7 +122,7 @@ async def login_for_access_token(
 @router.get("/", response_class=HTMLResponse)
 async def authentication_page(request: Request):
     context = {"request": request}
-    return templates.TemplateResponse("login.html", context)
+    return templates.TemplateResponse(request, "login.html", context)
 
 
 @router.post("/", response_class=HTMLResponse)
@@ -139,19 +139,19 @@ async def login(request: Request, db: Session = Depends(get_db)):
         if not validate_user_cookie:
             msg = "Incorrect username/ Password"
             context = {"request": request, "msg": msg}
-            return templates.TemplateResponse("login.html", context)
+            return templates.TemplateResponse(request, "login.html", context)
         return response
     except HTTPException:
         msg = "Unknown error"
         context = {"request": request, "msg": msg}
-        return templates.TemplateResponse("login.html", context)
+        return templates.TemplateResponse(request, "login.html", context)
 
 
 @router.get("/logout", response_class=HTMLResponse)
 async def logout(request: Request):
     msg = "Logout successful !"
     context = {"request": request, "msg": msg}
-    response = templates.TemplateResponse("login.html", context)
+    response = templates.TemplateResponse(request, "login.html", context)
     response.delete_cookie("access_token")
     return response
 
@@ -159,7 +159,7 @@ async def logout(request: Request):
 @router.get("/register", response_class=HTMLResponse)
 async def registration_page(request: Request):
     context = {"request": request}
-    return templates.TemplateResponse("register.html", context)
+    return templates.TemplateResponse(request, "register.html", context)
 
 
 @router.post("/register", response_class=HTMLResponse)
@@ -183,7 +183,9 @@ async def registration_user(
     if password != password2 or username_exists_check or email_exists_check:
         msg = "Invalid registration request"
         return templates.TemplateResponse(
-            "register.html", context={"request": request, "msg": msg}
+            request,
+            "register.html",
+            context={"request": request, "msg": msg},
         )
 
     create_user_model = models.Users()
@@ -204,5 +206,7 @@ async def registration_user(
     msg = "User successfully Created.Click on Login"
 
     return templates.TemplateResponse(
-        "register.html", context={"request": request, "msg": msg}
+        request,
+        "register.html",
+        context={"request": request, "msg": msg},
     )

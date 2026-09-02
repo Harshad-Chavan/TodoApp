@@ -1,0 +1,56 @@
+[project]
+name = "todoapp"
+version = "0.1.0"
+description = "FastAPI-based Todo application"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "aiofiles",
+    "alembic",
+    "anyio",
+    "bcrypt",
+    "black",
+    "cffi",
+    "click",
+    "cryptography",
+    "ecdsa",
+    "fastapi",
+    "h11",
+    "httptools",
+    "idna",
+    "Jinja2",
+    "Mako",
+    "MarkupSafe",
+    "mypy",
+    "mypy-extensions",
+    "packaging",
+    "passlib",
+    "pathspec",
+    "platformdirs",
+    "psycopg2-binary",
+    "pyasn1",
+    "pycparser",
+    "pydantic",
+    "python-dotenv",
+    "python-jose",
+    "python-multipart",
+    "PyYAML",
+    "rsa",
+    "six",
+    "sniffio",
+    "SQLAlchemy",
+    "starlette",
+    "tomli",
+    "typing_extensions",
+    "uvicorn",
+    "uvloop",
+    "watchfiles",
+    "websockets",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = false
